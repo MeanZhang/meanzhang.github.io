@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /2020/
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Disallow: /css/
+Disallow: /images/
+Disallow: /js/
+Disallow: /4be36ed063d606dd92ea5ef9acddfee5.txt
+Disallow: /shenma-site-verification.txt
+Disallow: /sogousiteverification.txt
+Sitemap: https://www.meancoder.top/sitemap.xml
+Sitemap: https://www.meancoder.top/baidusitemap.xml
