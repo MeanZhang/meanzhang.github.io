@@ -2,77 +2,77 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://www.meancoder.top/tags/</loc>
+    <loc>https://www.meancoder.xyz/tags/</loc>
     
-    <lastmod>2021-06-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.meancoder.top/categories/</loc>
-    
-    <lastmod>2021-06-17</lastmod>
+    <lastmod>2021-07-11</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/auto-duokan/</loc>
+    <loc>https://www.meancoder.xyz/categories/</loc>
+    
+    <lastmod>2021-07-11</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.meancoder.xyz/2020/auto-duokan/</loc>
     
     <lastmod>2020-11-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/add-email-notice/</loc>
+    <loc>https://www.meancoder.xyz/2020/add-email-notice/</loc>
     
     <lastmod>2020-08-26</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/about/</loc>
+    <loc>https://www.meancoder.xyz/about/</loc>
     
     <lastmod>2020-08-26</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/OJ-3-Python-problems/</loc>
+    <loc>https://www.meancoder.xyz/2020/OJ-3-Python-problems/</loc>
     
     <lastmod>2020-07-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/markdown-formula-symbol/</loc>
+    <loc>https://www.meancoder.xyz/2020/markdown-formula-symbol/</loc>
     
     <lastmod>2020-07-15</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/MMRC/</loc>
+    <loc>https://www.meancoder.xyz/2020/MMRC/</loc>
     
     <lastmod>2020-05-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/RSA-given-e-d-n-factorize-n/</loc>
+    <loc>https://www.meancoder.xyz/2020/RSA-given-e-d-n-factorize-n/</loc>
     
     <lastmod>2020-05-19</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/biginteger-usage/</loc>
+    <loc>https://www.meancoder.xyz/2020/biginteger-usage/</loc>
     
     <lastmod>2020-05-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/2020/cryptography-and-network-security-problem-8.2/</loc>
+    <loc>https://www.meancoder.xyz/2020/cryptography-and-network-security-problem-8.2/</loc>
     
     <lastmod>2020-04-19</lastmod>
     
@@ -80,79 +80,79 @@
   
 
   <url>
-    <loc>https://www.meancoder.top/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://www.meancoder.top/tags/Java/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/Java/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/cryptology/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/cryptology/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/RSA/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/RSA/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/Markdown/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/Markdown/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/Python/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/Python/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/abstract-algebra/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/abstract-algebra/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/blog/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/blog/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/JavaScript/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/JavaScript/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/others/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/others/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/tags/CRT/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/tags/CRT/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -160,64 +160,64 @@
 
   
   <url>
-    <loc>https://www.meancoder.top/categories/Java/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/Java/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/Markdown/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/Markdown/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/Python/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/Python/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/cryptology/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/cryptology/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/blog/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/blog/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/others/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/others/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/abstract-algebra/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/abstract-algebra/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/cryptology/RSA/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/cryptology/RSA/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://www.meancoder.top/categories/abstract-algebra/CRT/</loc>
-    <lastmod>2021-06-17</lastmod>
+    <loc>https://www.meancoder.xyz/categories/abstract-algebra/CRT/</loc>
+    <lastmod>2021-07-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
