@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.meancoder.xyz</id>
+    <title>Mean 个人博客 • Posts by &#34;markdown&#34; tag</title>
+    <link href="https://blog.meancoder.xyz" />
+    <updated>2020-06-03T14:12:31.000Z</updated>
+    <category term="Java" />
+    <category term="密码学" />
+    <category term="RSA" />
+    <category term="Markdown" />
+    <category term="Python" />
+    <category term="Serverless" />
+    <category term="博客" />
+    <category term="抽象代数" />
+    <category term="中国剩余定理" />
+    <category term="服务器" />
+    <category term="杂" />
+    <category term="JavaScript" />
+    <category term="Node.js" />
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/markdown-formula-symbol/</id>
+        <title>Markdown 公式符号</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/markdown-formula-symbol/"/>
+        <content type="html">&lt;p&gt;记录一下部分 Markdown 公式中符号的代码。（本文将持续更新）&lt;/p&gt;
+&lt;!---more---&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;符号名称&lt;/th&gt;
+&lt;th&gt;显示效果&lt;/th&gt;
+&lt;th&gt;代码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;小于等于号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;≤&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\leqslant&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;大于等于号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;≥&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\geqslant&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;根号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;$\sqrt{2}$&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\sqrt&amp;#123;2&amp;#125;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;根号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;$\sqrt[n]{2}$&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\sqrt[n]&amp;#123;2&amp;#125;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+        <category term="Markdown" />
+        <updated>2020-06-03T14:12:31.000Z</updated>
+    </entry>
+</feed>
