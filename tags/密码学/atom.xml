@@ -1,0 +1,398 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.meancoder.xyz</id>
+    <title>Mean 个人博客 • Posts by &#34;密码学&#34; tag</title>
+    <link href="https://blog.meancoder.xyz" />
+    <updated>2020-05-19T01:56:28.000Z</updated>
+    <category term="Java" />
+    <category term="密码学" />
+    <category term="RSA" />
+    <category term="Markdown" />
+    <category term="Python" />
+    <category term="Serverless" />
+    <category term="博客" />
+    <category term="抽象代数" />
+    <category term="中国剩余定理" />
+    <category term="服务器" />
+    <category term="杂" />
+    <category term="JavaScript" />
+    <category term="Node.js" />
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/MMRC/</id>
+        <title>改进的混合基数转换法（MMRC）</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/MMRC/"/>
+        <content type="html">&lt;p&gt;混合基数转换法（Mixed-Radix Conversion, MRC）是求 CRT
+唯一解的方法，Kunth
+对其进行了改进。可将改算法改进为改进的混合基数转换法（Modified
+Mixed-Radix Conversion, MMRC）。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;MRC 比较复杂，在这里不做介绍，可以参考&lt;a
+href=&#34;http://www.cnki.com.cn/Article/CJFDTotal-HBKX200303003.htm&#34;&gt;《中国剩余定理在
+RSA 解密中的应用》&lt;/a&gt;&lt;a href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;mmrc&#34;&gt;MMRC&lt;/h2&gt;
+&lt;p&gt;下面来介绍一下 MMRC：&lt;/p&gt;
+&lt;p&gt;设同余方程组为：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;$$
+\begin{cases}
+x≡d_1\pmod{p_1}\\
+x≡d_2\pmod{p_2}\\
+......\\
+x≡d_s\pmod{p_s}\\
+\end{cases}
+$$&lt;/span&gt;&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;B&lt;/em&gt;&lt;sub&gt;&lt;em&gt;j&lt;/em&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt; ← &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;&lt;em&gt;j&lt;/em&gt;&lt;/sub&gt;&lt;sup&gt;−1&lt;/sup&gt; (mod  &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;)(1≤&lt;em&gt;j&lt;/em&gt;&amp;lt;&lt;em&gt;i&lt;/em&gt;≤&lt;em&gt;s&lt;/em&gt;)&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;令&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;1&lt;/sub&gt; = &lt;em&gt;d&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(1≤&lt;em&gt;i&lt;/em&gt;≤&lt;em&gt;s&lt;/em&gt;)&lt;/span&gt;，由递推公式&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;(&lt;em&gt;j&lt;/em&gt;+1)&lt;/sub&gt; = (&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;em&gt;j&lt;/em&gt;&lt;/sub&gt;−&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;j&lt;/em&gt;&lt;em&gt;j&lt;/em&gt;&lt;/sub&gt;)&lt;em&gt;B&lt;/em&gt;&lt;sub&gt;&lt;em&gt;j&lt;/em&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt; mod  &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sub&gt;(1≤&lt;em&gt;j&lt;/em&gt;&amp;lt;&lt;em&gt;i&lt;/em&gt;≤&lt;em&gt;s&lt;/em&gt;)&lt;/span&gt;，计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;11&lt;/sub&gt;, &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;22&lt;/sub&gt;, ..., &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;s&lt;/em&gt;&lt;em&gt;s&lt;/em&gt;&lt;/sub&gt;&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;计算唯一解&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; ← &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;11&lt;/sub&gt; + &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;22&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt; + &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;33&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt; + ... + &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;&lt;em&gt;s&lt;/em&gt;&lt;em&gt;s&lt;/em&gt;&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;3&lt;/sub&gt;...&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;&lt;em&gt;s&lt;/em&gt;&lt;/sub&gt;&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;特别地，对于只包含两个方程的方程组&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;$$
+\begin{cases}
+x≡d_1\pmod{p_1}\\
+x≡d_2\pmod{p_2}\\
+\end{cases}
+$$&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;可以这样计算：&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;B&lt;/em&gt;&lt;sub&gt;12&lt;/sub&gt; ← &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;sup&gt;−1&lt;/sup&gt; (mod  &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;)&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;11&lt;/sub&gt; = &lt;em&gt;d&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;21&lt;/sub&gt; = &lt;em&gt;d&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/span&gt;，计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;22&lt;/sub&gt; = (&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;21&lt;/sub&gt;−&lt;em&gt;a&lt;/em&gt;&lt;sub&gt;11&lt;/sub&gt;)&lt;em&gt;B&lt;/em&gt;&lt;sub&gt;12&lt;/sub&gt; mod  &lt;em&gt;p&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/span&gt;;&lt;/li&gt;
+&lt;li&gt;计算唯一解&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; ← &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;11&lt;/sub&gt; + &lt;em&gt;a&lt;/em&gt;&lt;sub&gt;22&lt;/sub&gt;&lt;em&gt;p&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;mmrc-在-rsa-解密中的作用&#34;&gt;MMRC 在 RSA 解密中的作用&lt;/h2&gt;
+&lt;p&gt;RSA 的解密过程为&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;M&lt;/em&gt; = &lt;em&gt;C&lt;/em&gt;&lt;sup&gt;&lt;em&gt;d&lt;/em&gt;&lt;/sup&gt; mod  &lt;em&gt;N&lt;/em&gt;&lt;/span&gt;，而&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;N&lt;/em&gt; = &lt;em&gt;p&lt;/em&gt;&lt;em&gt;q&lt;/em&gt;&lt;/span&gt;且&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;p&lt;/em&gt;&lt;/span&gt;和&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;q&lt;/em&gt;&lt;/span&gt;互素，所以 M 可以通过下式求出：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;$$
+\begin{cases}
+m_1≡C^d\pmod p\\
+m_2≡C^d\pmod q\\
+\end{cases}
+$$&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;其中&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt; = &lt;em&gt;C&lt;/em&gt;&lt;sup&gt;&lt;em&gt;d&lt;/em&gt;&lt;/sup&gt; mod  &lt;em&gt;p&lt;/em&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt; = &lt;em&gt;C&lt;/em&gt;&lt;sup&gt;&lt;em&gt;d&lt;/em&gt;&lt;/sup&gt; mod  &lt;em&gt;q&lt;/em&gt;&lt;/span&gt;。&lt;/p&gt;
+&lt;p&gt;由此我们可以得到快速解密的算法：&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt; ← (&lt;em&gt;C&lt;/em&gt; mod  &lt;em&gt;p&lt;/em&gt;)&lt;sup&gt;&lt;em&gt;d&lt;/em&gt; mod  &lt;em&gt;p&lt;/em&gt; − 1&lt;/sup&gt; mod  &lt;em&gt;p&lt;/em&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt; ← (&lt;em&gt;C&lt;/em&gt; mod  &lt;em&gt;q&lt;/em&gt;)&lt;sup&gt;&lt;em&gt;d&lt;/em&gt; mod  &lt;em&gt;q&lt;/em&gt; − 1&lt;/sup&gt; mod  &lt;em&gt;q&lt;/em&gt;&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;p&lt;/em&gt;&lt;sup&gt;−1&lt;/sup&gt; (mod  &lt;em&gt;q&lt;/em&gt;)&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;计算&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt; ← &lt;em&gt;p&lt;/em&gt;&lt;sup&gt;−1&lt;/sup&gt;(&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;−&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt;) mod  &lt;em&gt;q&lt;/em&gt;&lt;/span&gt;；&lt;/li&gt;
+&lt;li&gt;计算明文&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;M&lt;/em&gt; ← &lt;em&gt;m&lt;/em&gt;&lt;sub&gt;1&lt;/sub&gt; + &lt;em&gt;t&lt;/em&gt;&lt;em&gt;p&lt;/em&gt;&lt;/span&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在第 1 步中，由于&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;p&lt;/em&gt;&lt;/span&gt;是素数，由费马小定理&lt;a href=&#34;#fn2&#34;
+class=&#34;footnote-ref&#34; id=&#34;fnref2&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;2&lt;/sup&gt;&lt;/a&gt;可得，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;C&lt;/em&gt;&lt;sup&gt;&lt;em&gt;p&lt;/em&gt; − 1&lt;/sup&gt; ≡ 1 (mod  &lt;em&gt;p&lt;/em&gt;)&lt;/span&gt;，所以&lt;span
+class=&#34;math inline&#34;&gt;(&lt;em&gt;C&lt;/em&gt; mod  &lt;em&gt;p&lt;/em&gt;)&lt;sup&gt;&lt;em&gt;d&lt;/em&gt; mod  &lt;em&gt;p&lt;/em&gt; − 1&lt;/sup&gt; mod  &lt;em&gt;p&lt;/em&gt; = &lt;em&gt;C&lt;/em&gt;&lt;sup&gt;&lt;em&gt;d&lt;/em&gt;&lt;/sup&gt; mod  &lt;em&gt;p&lt;/em&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;m&lt;/em&gt;&lt;sub&gt;2&lt;/sub&gt;&lt;/span&gt;同理。&lt;/p&gt;
+&lt;p&gt;下面给出我的代码，完整代码见&lt;a
+href=&#34;https://github.com/MeanZhang/RSA&#34;&gt;MeanZhang/RSA:
+RSA-Java&lt;/a&gt;。&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * RSA解密&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * 使用了MMRC算法&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; c 密文&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; d 私钥d&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; p p&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; q q&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@return&lt;/span&gt; 明文&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; BigInteger &lt;span class=&#34;title function_&#34;&gt;decrypt&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(BigInteger c, BigInteger d, BigInteger p, BigInteger q)&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// m1 ≡ c^d ≡ (c mod p)^(d mod (p-1))(mod p)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;m1&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; c.mod(p).modPow(d.mod(p.subtract(BigInteger.ONE)), p);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// m2 ≡ c^d ≡ (c mod q)^(d mod (q-1))(mod q)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;m2&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; c.mod(q).modPow(d.mod(q.subtract(BigInteger.ONE)), q);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;invP&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; p.modInverse(q);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// t = p^(-1) * (m2-m1) mod q&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;t&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; invP.multiply(m2.subtract(m1)).mod(q);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; m1.add(t.multiply(p));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;aside id=&#34;footnotes&#34; class=&#34;footnotes footnotes-end-of-document&#34;
+role=&#34;doc-endnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a
+href=&#34;http://www.cnki.com.cn/Article/CJFDTotal-HBKX200303003.htm&#34;&gt;中国剩余定理在
+RSA 解密中的应用–《河北省科学院学报》2003 年 03 期&lt;/a&gt;&lt;a href=&#34;#fnref1&#34;
+class=&#34;footnote-back&#34; role=&#34;doc-backlink&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li id=&#34;fn2&#34;&gt;&lt;p&gt;&lt;a
+href=&#34;https://zh.wikipedia.org/wiki/费马小定理&#34;&gt;费马小定理 -
+维基百科，自由的百科全书&lt;/a&gt;&lt;a href=&#34;#fnref2&#34; class=&#34;footnote-back&#34;
+role=&#34;doc-backlink&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/aside&gt;
+</content>
+        <category term="密码学" />
+        <category term="RSA" />
+        <category term="抽象代数" />
+        <category term="中国剩余定理" />
+        <updated>2020-05-19T01:56:28.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/RSA-given-e-d-n-factorize-n/</id>
+        <title>RSA 已知 e，d 和 n，分解 N</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/RSA-given-e-d-n-factorize-n/"/>
+        <content type="html">&lt;p&gt;这次的密码学实验有一个已知 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;e&lt;/em&gt;&lt;/span&gt; ， &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;d&lt;/em&gt;&lt;/span&gt; 和 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;N&lt;/em&gt;&lt;/span&gt; ，分解 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;N&lt;/em&gt;&lt;/span&gt;
+的问题，想了很久（其实没想多久，试了一下就放弃了），然后就到网上找资料。找到了一个很好用的网站，&lt;a
+href=&#34;https://www.di-mgt.com.au/index.html&#34;&gt;DI Management
+Home&lt;/a&gt;，都是关于密码学的，里面就有关于这个问题的算法&lt;a href=&#34;#fn1&#34;
+class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Initially we compute &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt; = &lt;em&gt;d&lt;/em&gt;&lt;em&gt;e&lt;/em&gt; − 1&lt;/span&gt; . We
+then choose a random integer &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;g&lt;/em&gt;&lt;/span&gt;
+in the range &lt;span
+class=&#34;math inline&#34;&gt;1 &amp;lt; &lt;em&gt;g&lt;/em&gt; &amp;lt; &lt;em&gt;N&lt;/em&gt;&lt;/span&gt; . Now &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt;&lt;/span&gt; is an even number, where &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt; = 2&lt;sup&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt;
+with &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt; odd and &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt; ≥ 1&lt;/span&gt; , so we can compute &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; = &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/2&lt;/sup&gt;, &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/4&lt;/sup&gt;, …, &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/2&lt;sup&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; (mod  &lt;em&gt;N&lt;/em&gt;)&lt;/span&gt;
+until &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; &amp;gt; 1&lt;/span&gt; and &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt; = gcd (&lt;em&gt;x&lt;/em&gt;−1,&lt;em&gt;N&lt;/em&gt;) &amp;gt; 1&lt;/span&gt;
+. If so, then one of our factors, say &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;p&lt;/em&gt;&lt;/span&gt; , is equal to &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt;&lt;/span&gt; , and the other is &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;q&lt;/em&gt; = &lt;em&gt;N&lt;/em&gt;/&lt;em&gt;y&lt;/em&gt;&lt;/span&gt; and we are
+done. If we don’t find a solution, then we choose another random &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;g&lt;/em&gt;&lt;/span&gt; .&lt;/p&gt;
+&lt;p&gt;DI Management - &lt;em&gt;&lt;a
+href=&#34;https://www.di-mgt.com.au/rsa_factorize_n.html&#34;&gt;RSA: how to
+factorize N given d&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;简单翻译一下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先我们计算 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt; = &lt;em&gt;d&lt;/em&gt;&lt;em&gt;e&lt;/em&gt; − 1&lt;/span&gt;
+。然后选择一个随机数 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;g&lt;/em&gt;&lt;/span&gt; ，满足
+&lt;span class=&#34;math inline&#34;&gt;1 &amp;lt; &lt;em&gt;g&lt;/em&gt; &amp;lt; &lt;em&gt;N&lt;/em&gt;&lt;/span&gt; 。
+&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt;&lt;/span&gt; 是偶数，所以 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt; = 2&lt;sup&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sup&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt;
+，其中 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt; 是奇数且 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt; ≥ 1&lt;/span&gt; ，然后计算 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; = &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/2&lt;/sup&gt;, &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/4&lt;/sup&gt;, …, &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/2&lt;sup&gt;&lt;em&gt;t&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; (mod  &lt;em&gt;N&lt;/em&gt;)&lt;/span&gt;，直到
+&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; &amp;gt; 1&lt;/span&gt; 且 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt; = gcd (&lt;em&gt;x&lt;/em&gt;−1,&lt;em&gt;N&lt;/em&gt;) &amp;gt; 1&lt;/span&gt;
+。 如果这样的 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt;&lt;/span&gt;
+存在，那么其中一个因子 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;p&lt;/em&gt;&lt;/span&gt; 等于
+&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt;&lt;/span&gt; ，并且 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;q&lt;/em&gt; = &lt;em&gt;N&lt;/em&gt;/&lt;em&gt;y&lt;/em&gt;&lt;/span&gt;
+，这样就完成了。如果这样的 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;y&lt;/em&gt;&lt;/span&gt;
+不存在，就重新生成随机数 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;g&lt;/em&gt;&lt;/span&gt;
+。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;下面是我的代码，对原算法稍微进行了一点改动。原算法是先计算出 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt;&lt;/span&gt; 和 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt; ，然后依次计算 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; = &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;/2&lt;sup&gt;&lt;em&gt;i&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt;&lt;/span&gt;
+。这里我不计算 &lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt;&lt;/span&gt; 和 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;r&lt;/em&gt;&lt;/span&gt; ，而是只要 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt;&lt;/span&gt; 是偶数，就将其除以 2，然后计算
+&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;x&lt;/em&gt; = &lt;em&gt;g&lt;/em&gt;&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt;&lt;/span&gt;
+并判断是否满足条件。这样可以减少一些计算，但是由于 &lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;t&lt;/em&gt;&lt;/span&gt; 并不大，所以减少的计算有限。&lt;/p&gt;
+&lt;p&gt;完整代码见&lt;a href=&#34;https://github.com/MeanZhang/RSA&#34;&gt;MeanZhang/RSA:
+RSA-Java&lt;/a&gt;。&lt;/p&gt;
+&lt;figure class=&#34;highlight java&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;/**&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * 已知e，d，n，分解n&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; *&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; e 公钥e&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; d 私钥d&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@param&lt;/span&gt; n 模数n&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; * &lt;span class=&#34;doctag&#34;&gt;@return&lt;/span&gt; p，q&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt; */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; BigInteger[] attack(BigInteger e, BigInteger d, BigInteger n) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// p,q&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    BigInteger[] result = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;BigInteger&lt;/span&gt;[&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;comment&#34;&gt;// k=de-1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;k&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; d.multiply(e).subtract(BigInteger.ONE);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;type&#34;&gt;Random&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;random&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;Random&lt;/span&gt;();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (&lt;span class=&#34;literal&#34;&gt;true&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;g&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;BigInteger&lt;/span&gt;(n.bitLength(), random);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 选择随机数g，1&amp;lt;g&amp;lt;n&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (g.compareTo(BigInteger.ONE) &amp;lt;= &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; || g.compareTo(n) &amp;gt;= &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            g = &lt;span class=&#34;keyword&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;title class_&#34;&gt;BigInteger&lt;/span&gt;(n.bitLength(), random);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;k1&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; k;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;comment&#34;&gt;// 计算t和g^(k/2^i)的过程合在一起&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (k1.mod(BigInteger.TWO).equals(BigInteger.ZERO)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 如果k为偶数，就除以2&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            k1 = k1.shiftRight(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 此时g^(k/2^i)=g^k1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;type&#34;&gt;BigInteger&lt;/span&gt; &lt;span class=&#34;variable&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;operator&#34;&gt;=&lt;/span&gt; g.modPow(k1, n);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 计算y=gcd(x−1,n)，直接赋值给p(result[0])&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            result[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;] = x.subtract(BigInteger.ONE).gcd(n);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;comment&#34;&gt;// 如果x&amp;gt;1且y=gcd(x−1,n)&amp;gt;1&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (x.compareTo(BigInteger.ONE) &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; result[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;].compareTo(BigInteger.ONE) &amp;gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                result[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;] = n.divide(result[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;]);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; result;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;            &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;测试数据：&lt;/p&gt;
+&lt;figure class=&#34;highlight text&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;e:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;65537&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;d:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13085102850405329895940153649208766646679432053055210927814587187939575969334380946175257120108607885616731724467899991987963542311668962802613624160423864736904359544115910805381019345850330276964971412664144174157825068713331109139842487999112829255389047329358923488846912437792391102853729375052922599258215311601018992134762683570752403675370812499995354701024990414541327012769030147878934713424171374951602988478984432403148854042370903764361797455965930292322795814453835335323397068237664481359506461188857661605832041501219728374514303209642746672993156029099655958158717907546664548938973389857200804582177&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;n:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21378032245774894186324720788457768851857953294637267751313371903474996018902810092972224806315945430514626988743400353365786674788848003569698586194388463460699531620948408197942261177369324808332585418351947368544183614904162658914539989430070735676083960582943505227316151479174351490943931346982185481068889458087344890907035731467000101100009111593455801160870652558847164438348031498067369123608755518383163346962891967964682970251625764813457371461595048927486942272152822570449609158417324070867001419543608370026546341531367233199832189762919523227554947408242727690461831545997600374969434706782376320559561&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;p:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;134015724574231629415725856596339106132655429815809390083191653420751276014515665041469448212111089978027787330894345961709429696830117657137052704491606694791519141111894965847240833879740293408266251425861598011543042632576624378597158795956174622709934079034648552634466265913328434606944071200422868130573&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;q:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;159518834925475861956097917917341301031640418209579419960447972340833353891477422457476074816300423813142613130845835933143395284444599641612757310435466623981281701817688676270876235464147642571713805328342460087461430626730047957682558277868352127107752854583156354513612089006699159193484825862868615965357&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;aside id=&#34;footnotes&#34; class=&#34;footnotes footnotes-end-of-document&#34;
+role=&#34;doc-endnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a
+href=&#34;https://www.di-mgt.com.au/rsa_factorize_n.html&#34;&gt;RSA: how to
+factorize N given d&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;
+role=&#34;doc-backlink&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/aside&gt;
+</content>
+        <category term="密码学" />
+        <category term="RSA" />
+        <category term="抽象代数" />
+        <updated>2020-05-18T14:07:38.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/biginteger-usage/</id>
+        <title>BigInteger 用法</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/biginteger-usage/"/>
+        <content type="html">&lt;p&gt;今天在写 RSA，又用到了&lt;code&gt;java.math.BigInteger&lt;/code&gt;类&lt;a
+href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;，总结一下常用的用法。（写完才发现
+gcd 和求逆方法都有了）&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;h2 id=&#34;biginteger-介绍&#34;&gt;BigInteger 介绍&lt;/h2&gt;
+&lt;p&gt;继承自&lt;code&gt;Number&lt;/code&gt;类，可表示任意长度的整数。&lt;code&gt;BigInteger&lt;/code&gt;用等号可以直接进行复制，而不是引用地址。&lt;/p&gt;
+&lt;h2 id=&#34;构造方法&#34;&gt;构造方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(int numBits, Random rnd)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;构造一个随机生成的&lt;code&gt;numBits&lt;/code&gt;位的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(String val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将十进制字符串表示的&lt;code&gt;val&lt;/code&gt;转为&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(String val, int radix)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;code&gt;radix&lt;/code&gt;进制字符串表示的&lt;code&gt;val&lt;/code&gt;转为&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常用方法&#34;&gt;常用方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger add(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;加法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger subtract(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;减法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger multiply(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;乘法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger divide(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;除法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger[] divideAndRemainder(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;带余除法，返回商和余数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger remainder(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求余数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger mod(BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取模，注意和取余的区别。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger pow(int exponent)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;幂运算。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger gcd(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求最大公因子。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger abs()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取绝对值。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger negate()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取相反数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger modPow(BigInteger exponent, BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;模幂。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger modInverse(BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求逆元。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger shiftLeft(int n)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;左移&lt;code&gt;n&lt;/code&gt;位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger shiftRight(int n)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;右移&lt;code&gt;n&lt;/code&gt;位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int bitLength()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回二进制位数，不包括符号位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public static BigInteger valueOf(long val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回一个值为&lt;code&gt;val&lt;/code&gt;的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public static BigInteger probablePrime(int bitLength, Random rnd)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回一个&lt;code&gt;bitLength&lt;/code&gt;位的可能是素数的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public boolean isProbablePrime(int certainty)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;判断是否可能为素数，素数准确率为&lt;span
+class=&#34;math inline&#34;&gt;1 − 1/2&lt;sup&gt;&lt;em&gt;c&lt;/em&gt;&lt;em&gt;e&lt;/em&gt;&lt;em&gt;r&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;&lt;em&gt;a&lt;/em&gt;&lt;em&gt;i&lt;/em&gt;&lt;em&gt;n&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;&lt;em&gt;y&lt;/em&gt;&lt;/sup&gt;&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int compareTo(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;比较大小。小于返回&lt;code&gt;-1&lt;/code&gt;，相等返回&lt;code&gt;0&lt;/code&gt;，大于返回&lt;code&gt;1&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public boolean equals(Object x)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;判断是否相等。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public String toString(int radix)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回以&lt;code&gt;radix&lt;/code&gt;进制表示的字符串。若不传入参数，默认为十进制。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int intValue()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;code&gt;BigInteger&lt;/code&gt;转为&lt;code&gt;int&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;aside id=&#34;footnotes&#34; class=&#34;footnotes footnotes-end-of-document&#34;
+role=&#34;doc-endnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a
+href=&#34;https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/math/BigInteger.html&#34;&gt;BigInteger
+(Java SE 14 &amp;amp; JDK 14)&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;
+role=&#34;doc-backlink&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/aside&gt;
+</content>
+        <category term="Java" />
+        <category term="密码学" />
+        <category term="RSA" />
+        <updated>2020-05-16T13:36:22.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/cryptography-and-network-security-problem-8.2/</id>
+        <title>密码编码学与网络安全第七版习题 8.2</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/cryptography-and-network-security-problem-8.2/"/>
+        <content type="html">&lt;p&gt;这道题是密码学的作业，开始不会写，答案只有结果而没有过程，后来查了一些资料才算是搞明白了。&lt;/p&gt;
+&lt;p&gt;题目如下：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ol type=&#34;a&#34;&gt;
+&lt;li&gt;下述的伪随机数发生器可获得的最大周期是多少？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt; + 1&lt;/sub&gt; = (&lt;em&gt;a&lt;/em&gt;&lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt;) mod  2&lt;sup&gt;4&lt;/sup&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;ol start=&#34;2&#34; type=&#34;a&#34;&gt;
+&lt;li&gt;&lt;p&gt;这时 a 为多少？&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;对种子有什么要求？&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;解答如下：&lt;/p&gt;
+&lt;h2 id=&#34;a&#34;&gt;(a)&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;首先引入这样一个结论：对任意的奇数&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;/span&gt;与正整数&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;n&lt;/em&gt;&lt;/span&gt;，有：&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; ≡ 1 (mod  2&lt;sup&gt;&lt;em&gt;n&lt;/em&gt; + 2&lt;/sup&gt;)&lt;/span&gt;。用归纳法证明这个结论：&lt;/p&gt;
+&lt;ol type=&#34;1&#34;&gt;
+&lt;li&gt;&lt;p&gt;当&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;n&lt;/em&gt; = 1&lt;/span&gt;时，存在整数&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;b&lt;/em&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;c&lt;/em&gt;&lt;/span&gt;，使得&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; = (2&lt;em&gt;b&lt;/em&gt;+1)&lt;sup&gt;2&lt;/sup&gt; = 4&lt;em&gt;b&lt;/em&gt;(&lt;em&gt;b&lt;/em&gt;+1) + 1 = 2&lt;sup&gt;3&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt; + 1 ≡ 1 (mod  2&lt;sup&gt;3&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;假设当&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;n&lt;/em&gt; = &lt;em&gt;k&lt;/em&gt;&lt;/span&gt;时，命题成立，即&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; ≡ 1 (mod  2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 2&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;则存在整数&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;c&lt;/em&gt;&lt;/span&gt;，使得&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; = 2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 2&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt; + 1&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;当&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;n&lt;/em&gt; = &lt;em&gt;k&lt;/em&gt; + 1&lt;/span&gt;时，存在整数&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;k&lt;/em&gt;&lt;/span&gt;，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;b&lt;/em&gt;&lt;/span&gt;，使得&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 1&lt;/sup&gt;&lt;/sup&gt; = (2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 2&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt;+1)&lt;sup&gt;2&lt;/sup&gt; = 2&lt;sup&gt;2&lt;em&gt;k&lt;/em&gt; + 4&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt;&lt;sup&gt;2&lt;/sup&gt; + 2 · 2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 2&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt; + 1 = 2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 3&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt;(2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 1&lt;/sup&gt;&lt;em&gt;c&lt;/em&gt;+1) + 1 ≡ 1 (mod  2&lt;sup&gt;&lt;em&gt;k&lt;/em&gt; + 3&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;即当&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;n&lt;/em&gt; = &lt;em&gt;k&lt;/em&gt; + 1&lt;/span&gt;时，命题成立。&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由 1，2 可得，该命题成立。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;若&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;/span&gt;与&lt;span
+class=&#34;math inline&#34;&gt;2&lt;sup&gt;4&lt;/sup&gt;&lt;/span&gt;不互素，即&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;/span&gt;为偶数，令&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt; = 2&lt;em&gt;k&lt;/em&gt;&lt;/span&gt;，则&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;4&lt;/sup&gt; = 16&lt;em&gt;k&lt;/em&gt;&lt;sup&gt;4&lt;/sup&gt; ≡ 0 (mod  2&lt;sup&gt;4&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;从而&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;0 = &lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt; + 4&lt;/sub&gt; ≡ &lt;em&gt;a&lt;/em&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt; (mod  2&lt;sup&gt;4&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;产生的第四个数之后全为 0，所以&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;/span&gt;与&lt;span
+class=&#34;math inline&#34;&gt;2&lt;sup&gt;4&lt;/sup&gt;&lt;/span&gt;互素。&lt;/p&gt;
+&lt;p&gt;又因为&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sup&gt;&lt;/sup&gt; ≡ 1 (mod  2&lt;sup&gt;&lt;em&gt;n&lt;/em&gt; + 2&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;所以&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;2&lt;sup&gt;4 − 2&lt;/sup&gt;&lt;/sup&gt; = &lt;em&gt;a&lt;/em&gt;&lt;sup&gt;4&lt;/sup&gt; ≡ 1 (mod  2&lt;sup&gt;4&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;从而&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;sup&gt;4&lt;/sup&gt;&lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt; ≡ &lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt; (mod  2&lt;sup&gt;4&lt;/sup&gt;)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;即&lt;/p&gt;
+&lt;p&gt;&lt;span
+class=&#34;math display&#34;&gt;&lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt; + 4&lt;/sub&gt; = &lt;em&gt;X&lt;/em&gt;&lt;sub&gt;&lt;em&gt;n&lt;/em&gt;&lt;/sub&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;所以最大周期为 4。&lt;/p&gt;
+&lt;h2 id=&#34;b&#34;&gt;(b)&lt;/h2&gt;
+&lt;p&gt;由(a)可知，&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt;&lt;/span&gt;为奇数。&lt;/p&gt;
+&lt;p&gt;经计算，&lt;span
+class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt; = 7, 9, 15&lt;/span&gt;时，周期为 2。&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;&lt;em&gt;a&lt;/em&gt; = 3, 5, 11, 13&lt;/span&gt;时，周期为
+4。&lt;/p&gt;
+&lt;h2 id=&#34;c&#34;&gt;(c)&lt;/h2&gt;
+&lt;p&gt;种子必须为奇数，否则周期会不大于 2。&lt;/p&gt;
+</content>
+        <category term="密码学" />
+        <updated>2020-04-18T11:37:12.000Z</updated>
+    </entry>
+</feed>

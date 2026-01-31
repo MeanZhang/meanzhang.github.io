@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Mean 个人博客 • All posts by \"markdown\" category",
+    "description": "Mean 个人博客",
+    "home_page_url": "https://blog.meancoder.xyz",
+    "items": [
+        {
+            "id": "https://blog.meancoder.xyz/2020/markdown-formula-symbol/",
+            "url": "https://blog.meancoder.xyz/2020/markdown-formula-symbol/",
+            "title": "Markdown 公式符号",
+            "date_published": "2020-06-03T14:12:31.000Z",
+            "content_html": "<p>记录一下部分 Markdown 公式中符号的代码。（本文将持续更新）</p>\n<!---more--->\n<table>\n<thead>\n<tr class=\"header\">\n<th>符号名称</th>\n<th>显示效果</th>\n<th>代码</th>\n</tr>\n</thead>\n<tbody>\n<tr class=\"odd\">\n<td>小于等于号</td>\n<td><span class=\"math inline\">≤</span></td>\n<td><code>\\leqslant</code></td>\n</tr>\n<tr class=\"even\">\n<td>大于等于号</td>\n<td><span class=\"math inline\">≥</span></td>\n<td><code>\\geqslant</code></td>\n</tr>\n<tr class=\"odd\">\n<td>根号</td>\n<td><span class=\"math inline\">$\\sqrt{2}$</span></td>\n<td><code>\\sqrt&#123;2&#125;</code></td>\n</tr>\n<tr class=\"even\">\n<td>根号</td>\n<td><span class=\"math inline\">$\\sqrt[n]{2}$</span></td>\n<td><code>\\sqrt[n]&#123;2&#125;</code></td>\n</tr>\n</tbody>\n</table>\n",
+            "tags": [
+                "Markdown"
+            ]
+        }
+    ]
+}
