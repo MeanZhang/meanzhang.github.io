@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 7.3.0">
+<link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="5jk61zeMMX_B5D2_aH5FtvtWvk2cRkck3QR4h0Jf564">
+  <meta name="msvalidate.01" content="D321C6C84DF2DA14067F0C9A13EB83DE">
+  <meta name="baidu-site-verification" content="code-1Bvvgy1y9B">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Noto+Serif+SC:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Fira+Code:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous" defer></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.meancoder.xyz","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.27.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"atom-one-light","dark":"atom-one-dark"},"prism":{"light":"prism","dark":"prism-tomorrow"},"copy_button":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"language":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":true,"comments":{"style":"buttons","active":"twikoo","storage":true,"lazyload":true,"nav":null,"activeClass":"twikoo"},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false,"trigger":"auto"}}</script><script src="/js/config.js" defer></script>
+
+    <meta name="description" content="MIUI 的小爱同学内置小爱课程表，可以从学校的教务系统自动导入课程信息，非常实用。可惜我们学校没有适配，索性我就自己写了一下，顺便练练手。 代码已经上传到 Github 了，只有三个文件，开发者文档有详细说明，这里就贴一下代码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小爱课程表课程导入开发实践">
+<meta property="og:url" content="https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/">
+<meta property="og:site_name" content="Mean 个人博客">
+<meta property="og:description" content="MIUI 的小爱同学内置小爱课程表，可以从学校的教务系统自动导入课程信息，非常实用。可惜我们学校没有适配，索性我就自己写了一下，顺便练练手。 代码已经上传到 Github 了，只有三个文件，开发者文档有详细说明，这里就贴一下代码。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api.meancoder.xyz/schedule">
+<meta property="article:published_time" content="2022-02-07T09:24:57.000Z">
+<meta property="article:modified_time" content="2022-03-01T10:31:26.000Z">
+<meta property="article:author" content="Mean">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.meancoder.xyz/schedule">
+
+
+<link rel="canonical" href="https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/","path":"2022/buaa-ai-schedule-develop/","title":"小爱课程表课程导入开发实践"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>小爱课程表课程导入开发实践 | Mean 个人博客</title>
+  
+
+  <script src="/js/third-party/analytics/baidu-analytics.js" defer></script>
+  <script async src="https://hm.baidu.com/hm.js?0c51c1532c974a984b60991357cc6847"></script>
+
+
+
+
+
+
+
+  
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdnjs.cloudflare.com/ajax/libs/ribbon.js/1.0.2/ribbon.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/7.2.0/pangu.umd.js" integrity="sha256-JnmRRnJK7DC6RQJbAJb6AXOM9OmWzS6z8eYultk/48Y=" crossorigin="anonymous" defer></script>
+<script src="/js/utils.js" defer></script><script src="/js/motion.js" defer></script><script src="/js/sidebar.js" defer></script><script src="/js/next-boot.js" defer></script><script src="/js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="/js/third-party/search/local-search.js" defer></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"forest","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="/js/third-party/tags/mermaid.js" defer></script>
+
+
+
+  <script src="/js/third-party/pace.js" defer></script>
+
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/"}</script>
+  <script src="/js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Mean 个人博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">世事漫随流水，算来一梦浮生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="搜索..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Mean"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Mean</p>
+  <div class="site-description" itemprop="description">Mean 个人博客</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/MeanZhang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;MeanZhang" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/images/wechat_channel.png" title="公众号 → &#x2F;images&#x2F;wechat_channel.png" rel="noopener me"><i class="fab fa-weixin fa-fw"></i>公众号</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:390602272@qq.com" title="邮箱 → mailto:390602272@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>邮箱</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml" rel="noopener me"><i class="fa fa-rss fa-fw"></i>RSS</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+        <div class="pjax">
+        <div class="sidebar-inner sidebar-post-related">
+          <div class="animated">
+              <div class="links-of-blogroll-title"><i class="fa fa-signs-post fa-fw"></i>
+    相关文章
+  </div>
+  <ul class="popular-posts">
+    <li class="popular-posts-item">
+      <a class="popular-posts-link" href="/2020/add-email-notice/" rel="bookmark">
+        <time class="popular-posts-time">2020-08-26</time>
+        <br>
+      Valine 添加邮件提醒
+      </a>
+    </li>
+  </ul>
+
+          </div>
+        </div>
+        </div>
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Mean">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Mean 个人博客">
+      <meta itemprop="description" content="Mean 个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="小爱课程表课程导入开发实践 | Mean 个人博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          小爱课程表课程导入开发实践
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-02-07 17:24:57" itemprop="dateCreated datePublished" datetime="2022-02-07T17:24:57+08:00">2022-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-03-01 18:31:26" itemprop="dateModified" datetime="2022-03-01T18:31:26+08:00">2022-03-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">杂</span></a>
+        </span>
+    </span>
+
+  
+    <span id="/2022/buaa-ai-schedule-develop/" class="post-meta-item twikoo_visitors" data-flag-title="小爱课程表课程导入开发实践" title="阅读次数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="twikoo_visitors"></span>
+    </span>
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://github.com/MeanZhang/buaa-ai-schedule"><img data-src="https://api.meancoder.xyz/schedule" alt="使用人数" /></a></p>
+<p>MIUI
+的小爱同学内置小爱课程表，可以从学校的教务系统自动导入课程信息，非常实用。可惜我们学校没有适配，索性我就自己写了一下，顺便练练手。</p>
+<p>代码已经上传到 <a
+target="_blank" rel="noopener" href="https://github.com/MeanZhang/buaa-ai-schedule">Github</a>
+了，只有三个文件，<a
+target="_blank" rel="noopener" href="https://open-schedule-prod.ai.xiaomi.com/docs/#/help/">开发者文档</a>有详细说明，这里就贴一下代码。</p>
+<span id="more"></span>
+<div class="tabs" id="小爱课程表"><ul class="nav-tabs"><li class="tab active"><a href="#小爱课程表-1">scheduleHtmlProvider.js</a></li><li class="tab"><a href="#小爱课程表-2">scheduleHtmlParser.js</a></li><li class="tab"><a href="#小爱课程表-3">scheduleTimer.js</a></li></ul><div class="tab-content"><div class="tab-pane active" id="小爱课程表-1"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">scheduleHtmlProvider</span>(<span class="params"></span></span><br><span class="line"><span class="params">  iframeContent = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">  frameContent = <span class="string">&quot;&quot;</span>,</span></span><br><span class="line"><span class="params">  dom = <span class="variable language_">document</span></span></span><br><span class="line"><span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">loadTool</span>(<span class="string">&quot;AIScheduleTools&quot;</span>);</span><br><span class="line">  <span class="comment">// 使用它们的时候务必带上await，否则没有系统alert的时停效果</span></span><br><span class="line">  <span class="keyword">await</span> <span class="title class_">AIScheduleAlert</span>(</span><br><span class="line">    <span class="string">&quot;开始导入……\n完成后请手动修改开学时间\n如导入出错或有其他建议请联系QQ：390602272&quot;</span></span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">let</span> iframe = dom.<span class="title function_">getElementsByTagName</span>(<span class="string">&quot;iframe&quot;</span>)[<span class="number">0</span>].<span class="property">contentDocument</span>;</span><br><span class="line">  <span class="keyword">let</span> table = iframe.<span class="title function_">getElementsByClassName</span>(<span class="string">&quot;xfyq_area mt10&quot;</span>)[<span class="number">0</span>].<span class="property">outerHTML</span>;</span><br><span class="line">  <span class="comment">// console.info(table)</span></span><br><span class="line">  <span class="keyword">return</span> table;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="小爱课程表-2"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">scheduleHtmlParser</span>(<span class="params">html</span>) &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 提取课程周数</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; str 包含周数的字符串，如`[1-9，11]`、`12，14`</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> &#123;<span class="type">Array&lt;number&gt;</span>&#125; 包含`str`中所有周数的数组</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getWeeks</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> weeks = [];</span><br><span class="line">    str = str.<span class="title function_">split</span>(<span class="string">&quot;[&quot;</span>)[<span class="number">1</span>].<span class="title function_">split</span>(<span class="string">&quot;]&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> weekArray = str.<span class="title function_">split</span>(<span class="string">&quot;，&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> weekArray) &#123;</span><br><span class="line">      <span class="keyword">const</span> begin = weekArray[i].<span class="title function_">split</span>(<span class="string">&quot;-&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">let</span> end = weekArray[i].<span class="title function_">split</span>(<span class="string">&quot;-&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">      <span class="keyword">if</span> (!end) &#123;</span><br><span class="line">        end = begin;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="built_in">parseInt</span>(begin); j &lt;= <span class="built_in">parseInt</span>(end); j++) &#123;</span><br><span class="line">        weeks.<span class="title function_">push</span>(j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> weeks;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 提取课程节数</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; str 包含节数的字符串，如`第8，9节`</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> &#123;<span class="type">Array&lt;number&gt;</span>&#125; 包含`str`中所有节数的数组</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getSections</span>(<span class="params">str</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> sections = [];</span><br><span class="line">    str = <span class="regexp">/第(.+?)节/g</span>.<span class="title function_">exec</span>(str)[<span class="number">0</span>].<span class="title function_">replace</span>(<span class="string">&quot;第&quot;</span>, <span class="string">&quot;&quot;</span>).<span class="title function_">replace</span>(<span class="string">&quot;节&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> sectionArray = str.<span class="title function_">split</span>(<span class="string">&quot;，&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> sectionArray) &#123;</span><br><span class="line">      sections.<span class="title function_">push</span>(<span class="built_in">parseInt</span>(sectionArray[i].<span class="title function_">replace</span>(<span class="regexp">/[^0-9]/gi</span>, <span class="string">&quot;&quot;</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sections;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 获取单节课程信息</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; lessonName 课程名</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; day 星期</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; info 课程信息字符串</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> &#123;<span class="type">object</span>&#125; 课程信息</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getLesson</span>(<span class="params">lessonName, day, info</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> lesson = &#123; <span class="attr">sections</span>: <span class="title function_">getSections</span>(info), <span class="attr">weeks</span>: <span class="title function_">getWeeks</span>(info) &#125;;</span><br><span class="line">    lesson.<span class="property">name</span> = lessonName;</span><br><span class="line">    lesson.<span class="property">day</span> = day;</span><br><span class="line">    lesson.<span class="property">teacher</span> = info.<span class="title function_">split</span>(<span class="string">&quot;[&quot;</span>)[<span class="number">0</span>].<span class="title function_">replace</span>(<span class="regexp">/\s+/g</span>, <span class="string">&quot;&quot;</span>); <span class="comment">//去掉空格，多教师只提取第一个</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//提取教室</span></span><br><span class="line">    tmp = info.<span class="title function_">split</span>(<span class="string">&quot;周&quot;</span>);</span><br><span class="line">    lesson.<span class="property">position</span> = tmp[tmp.<span class="property">length</span> - <span class="number">1</span>].<span class="title function_">split</span>(<span class="string">&quot;\n&quot;</span>)[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lesson;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 获取多节课程信息（同一课程被拆分为多节课）</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; lessonName 课程名</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; day 星期</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; info1 课程信息（不含教室，第一行）</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; info2 教室（第二行）</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getLessons1</span>(<span class="params">lessonName, day, info1, info2</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> lessons = [];</span><br><span class="line">    <span class="keyword">let</span> position = info2.<span class="title function_">split</span>(<span class="string">&quot;\n&quot;</span>)[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">let</span> sections = <span class="title function_">getSections</span>(info2);</span><br><span class="line">    <span class="keyword">let</span> allWeeks = info1.<span class="title function_">split</span>(<span class="string">&quot;周，&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> allWeeks) &#123;</span><br><span class="line">      <span class="keyword">let</span> lesson = &#123; <span class="attr">sections</span>: sections, <span class="attr">weeks</span>: <span class="title function_">getWeeks</span>(allWeeks[i]) &#125;;</span><br><span class="line">      lesson.<span class="property">name</span> = lessonName;</span><br><span class="line">      lesson.<span class="property">day</span> = day;</span><br><span class="line">      lesson.<span class="property">teacher</span> = allWeeks[i].<span class="title function_">split</span>(<span class="string">&quot;[&quot;</span>)[<span class="number">0</span>].<span class="title function_">replace</span>(<span class="regexp">/\s+/g</span>, <span class="string">&quot;&quot;</span>); <span class="comment">//去掉空格</span></span><br><span class="line">      lesson.<span class="property">position</span> = position;</span><br><span class="line">      lessons.<span class="title function_">push</span>(lesson);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lessons;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 获取多节课程信息（同一老师不同教室， 如`张老师[10-13]周机房 第1，2节，[2-9]周（五）111 第1，2节`）</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; lessonName 课程名</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; day 星期</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">string</span>&#125; info 课程信息字符串</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> &#123;<span class="type">Array&lt;object&gt;</span>&#125; 课程信息</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">function</span> <span class="title function_">getLessons2</span>(<span class="params">lessonName, day, info</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> lessons = [];</span><br><span class="line">    <span class="keyword">let</span> teacher = info.<span class="title function_">split</span>(<span class="string">&quot;[&quot;</span>)[<span class="number">0</span>].<span class="title function_">replace</span>(<span class="regexp">/\s+/g</span>, <span class="string">&quot;&quot;</span>); <span class="comment">//去掉空格</span></span><br><span class="line">    <span class="keyword">let</span> weekArray = info.<span class="title function_">split</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> n = weekArray.<span class="property">length</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">let</span> lesson = &#123;</span><br><span class="line">        <span class="attr">sections</span>: <span class="title function_">getSections</span>(weekArray[i + <span class="number">1</span>]),</span><br><span class="line">        <span class="attr">weeks</span>: <span class="title function_">getWeeks</span>(weekArray[i]),</span><br><span class="line">      &#125;;</span><br><span class="line">      lesson.<span class="property">name</span> = lessonName;</span><br><span class="line">      lesson.<span class="property">day</span> = day;</span><br><span class="line">      lesson.<span class="property">teacher</span> = teacher;</span><br><span class="line">      lesson.<span class="property">position</span> = weekArray[i].<span class="title function_">split</span>(<span class="string">&quot;周&quot;</span>)[<span class="number">1</span>];</span><br><span class="line">      lessons.<span class="title function_">push</span>(lesson);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> lessons;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/** 课程信息 */</span></span><br><span class="line">  <span class="keyword">let</span> courseInfos = [];</span><br><span class="line">  <span class="keyword">const</span> lines = $(<span class="string">&quot;.addlist_01&quot;</span>).<span class="title function_">find</span>(<span class="string">&quot;tr&quot;</span>); <span class="comment">// 表的所有行</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> l = <span class="number">1</span>; l &lt;= <span class="number">6</span>; l++) &#123;</span><br><span class="line">    <span class="comment">// 1-6行为课程</span></span><br><span class="line">    <span class="keyword">const</span> linelessons = $(lines[l]).<span class="title function_">find</span>(<span class="string">&quot;td&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> day = <span class="number">1</span>; day &lt;= <span class="number">7</span>; day++) &#123;</span><br><span class="line">      <span class="comment">// 1-7列为每一天</span></span><br><span class="line">      <span class="keyword">const</span> index = day + <span class="number">1</span>; <span class="comment">// 列标为天数+1</span></span><br><span class="line">      <span class="keyword">let</span> child = linelessons[index].<span class="property">children</span>[<span class="number">0</span>];</span><br><span class="line">      <span class="keyword">if</span> (child.<span class="property">data</span> !== <span class="string">&quot;&amp;nbsp;&quot;</span>) &#123;</span><br><span class="line">        <span class="comment">//时间段不为空</span></span><br><span class="line">        <span class="keyword">while</span> (child) &#123;</span><br><span class="line">          <span class="comment">//一个时间段可能有多个课程</span></span><br><span class="line">          lessonName = child.<span class="property">data</span>.<span class="title function_">slice</span>(<span class="number">0</span>, <span class="number">49</span>); <span class="comment">//课程名长度不能超过50字符</span></span><br><span class="line">          <span class="comment">// lessonName = child.data;</span></span><br><span class="line">          child = child.<span class="property">next</span>.<span class="property">children</span>[<span class="number">0</span>];</span><br><span class="line">          <span class="keyword">if</span> (child.<span class="property">data</span>.<span class="title function_">slice</span>(-<span class="number">1</span>) === <span class="string">&quot;节&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (child.<span class="property">data</span>.<span class="title function_">indexOf</span>(<span class="string">&quot;，[&quot;</span>) === -<span class="number">1</span>) &#123;</span><br><span class="line">              <span class="comment">//同一教室不同老师</span></span><br><span class="line">              courseInfos.<span class="title function_">push</span>(<span class="title function_">getLesson</span>(lessonName, day, child.<span class="property">data</span>));</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              <span class="comment">//同一老师不同教室</span></span><br><span class="line">              lessons = <span class="title function_">getLessons2</span>(lessonName, day, child.<span class="property">data</span>);</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> lessons) &#123;</span><br><span class="line">                courseInfos.<span class="title function_">push</span>(lessons[i]);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//一个时间段可能有多个课程</span></span><br><span class="line">            child = child.<span class="property">next</span>;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">//同一课程被拆分为多节课（两行）</span></span><br><span class="line">            lessons = <span class="title function_">getLessons1</span>(</span><br><span class="line">              lessonName,</span><br><span class="line">              day,</span><br><span class="line">              child.<span class="property">data</span>,</span><br><span class="line">              child.<span class="property">next</span>.<span class="property">children</span>[<span class="number">0</span>].<span class="property">data</span></span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">let</span> i <span class="keyword">in</span> lessons) &#123;</span><br><span class="line">              courseInfos.<span class="title function_">push</span>(lessons[i]);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//一个时间段可能有多个课程</span></span><br><span class="line">            child = child.<span class="property">next</span>.<span class="property">children</span>[<span class="number">0</span>].<span class="property">next</span>;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">if</span> (child) &#123;</span><br><span class="line">            child = child.<span class="property">children</span>[<span class="number">0</span>];</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> courseInfos;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><div class="tab-pane" id="小爱课程表-3"><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 时间配置函数，此为入口函数，不要改动函数名</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">scheduleTimer</span>(<span class="params">&#123; providerRes, parserRes &#125; = &#123;&#125;</span>) &#123;</span><br><span class="line">  <span class="comment">//周数，包括两周考试周，春18秋19夏9</span></span><br><span class="line">  <span class="keyword">let</span> totalWeek = <span class="number">19</span>;</span><br><span class="line">  <span class="keyword">if</span> (</span><br><span class="line">    providerRes.<span class="title function_">indexOf</span>(<span class="string">&quot;春季学期&quot;</span>) &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">    providerRes.<span class="title function_">indexOf</span>(<span class="string">&quot;春季学期&quot;</span>) &lt; <span class="number">150</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    totalWeek = <span class="number">18</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (</span><br><span class="line">    providerRes.<span class="title function_">indexOf</span>(<span class="string">&quot;秋季学期&quot;</span>) &gt;= <span class="number">0</span> &amp;&amp;</span><br><span class="line">    providerRes.<span class="title function_">indexOf</span>(<span class="string">&quot;秋季学期&quot;</span>) &lt; <span class="number">150</span></span><br><span class="line">  ) &#123;</span><br><span class="line">    totalWeek = <span class="number">19</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    totalWeek = <span class="number">9</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//课程时间</span></span><br><span class="line">  <span class="keyword">const</span> sections = [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">1</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;08:00&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;08:45&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">2</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;08:50&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;09:35&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">3</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;09:50&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;10:35&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">4</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;10:40&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;11:25&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">5</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;11:30&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;12:15&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">6</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;14:00&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;14:45&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">7</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;14:50&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;15:35&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">8</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;15:50&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;16:35&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">9</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;16:40&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;17:25&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">10</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;17:30&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;18:15&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">11</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;19:00&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;19:45&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">12</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;19:50&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;20:35&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">13</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;20:40&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;21:25&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">section</span>: <span class="number">14</span>,</span><br><span class="line">      <span class="attr">startTime</span>: <span class="string">&quot;21:30&quot;</span>,</span><br><span class="line">      <span class="attr">endTime</span>: <span class="string">&quot;22:15&quot;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">totalWeek</span>: totalWeek, <span class="comment">// 总周数：[1, 30]之间的整数</span></span><br><span class="line">    <span class="attr">startSemester</span>: <span class="string">&quot;&quot;</span>, <span class="comment">// 开学时间：时间戳，13位长度字符串，推荐用代码生成</span></span><br><span class="line">    <span class="attr">startWithSunday</span>: <span class="literal">false</span>, <span class="comment">// 是否是周日为起始日，该选项为true时，会开启显示周末选项</span></span><br><span class="line">    <span class="attr">showWeekend</span>: <span class="literal">true</span>, <span class="comment">// 是否显示周末</span></span><br><span class="line">    <span class="attr">forenoon</span>: <span class="number">5</span>, <span class="comment">// 上午课程节数：[1, 10]之间的整数</span></span><br><span class="line">    <span class="attr">afternoon</span>: <span class="number">5</span>, <span class="comment">// 下午课程节数：[0, 10]之间的整数</span></span><br><span class="line">    <span class="attr">night</span>: <span class="number">4</span>, <span class="comment">// 晚间课程节数：[0, 10]之间的整数</span></span><br><span class="line">    <span class="attr">sections</span>: sections, <span class="comment">// 课程时间表，注意：总长度要和上边配置的节数加和对齐</span></span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></div></div>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="Mean 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="Mean 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Mean
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/" title="小爱课程表课程导入开发实践">https://blog.meancoder.xyz/2022/buaa-ai-schedule-develop/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="followme">
+  <span>欢迎关注我的其它发布渠道</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://github.com/MeanZhang">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+
+            <span class="label">GitHub</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <span class="social-link">
+            <span class="icon">
+              <i class="fab fa-weixin"></i>
+            </span>
+
+            <span class="label">微信公众号</span>
+          </span>
+
+          <img class="social-item-img" src="/images/wechat_channel.png">
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="https://blog.csdn.net/MeanCoder">
+            <span class="icon">
+              <i class="fab fa-cuttlefish"></i>
+            </span>
+
+            <span class="label">CSDN</span>
+          </a>
+      </div>
+
+      <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/wecom-push-api/" rel="prev" title="利用 Vercel 搭建企业微信消息推送 API">
+                  <i class="fa fa-angle-left"></i> 利用 Vercel 搭建企业微信消息推送 API
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/bitwarden-server/" rel="next" title="自建 Bitwarden 服务器">
+                  自建 Bitwarden 服务器 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments"><div id="twikoo-comments"></div></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">京ICP备 2021018352号 </a>
+  </div>
+  <div class="copyright">
+    &copy; 2020 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mean</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">10k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">35 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="twikoo" type="application/json">{"enable":true,"visitor":true,"envId":"https://twikoo.meancoder.xyz/","el":"#twikoo-comments"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.twikoo.el)
+    .then(() => NexT.utils.getScript(
+      CONFIG.twikoo.jsUrl || 'https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js',
+      { condition: window.twikoo }
+    ))
+    .then(() => {
+      twikoo.init(CONFIG.twikoo);
+    });
+});
+</script>
+<style>
+.post-block, .comments {
+  overflow: visible;
+}
+.tk-owo-emotion {
+  display: inline-block;
+}
+</style>
+
+</body>
+</html>
