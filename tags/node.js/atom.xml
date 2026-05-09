@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.meancoder.xyz</id>
+    <title>Mean 个人博客 • Posts by &#34;node.js&#34; tag</title>
+    <link href="https://blog.meancoder.xyz" />
+    <updated>2020-11-19T14:23:34.000Z</updated>
+    <category term="Java" />
+    <category term="密码学" />
+    <category term="RSA" />
+    <category term="Markdown" />
+    <category term="Python" />
+    <category term="Serverless" />
+    <category term="博客" />
+    <category term="抽象代数" />
+    <category term="中国剩余定理" />
+    <category term="服务器" />
+    <category term="杂" />
+    <category term="JavaScript" />
+    <category term="Node.js" />
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/auto-duokan/</id>
+        <title>多看阅读自动体验 APP 领书币</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/auto-duokan/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文仅用于记录自己的学习过程，严禁转载。&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;为了避免不必要的纠纷，脚本代码已去除。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;多看阅读一直都有体验 APP 领取书豆的活动，体验 30 秒 APP
+就可以免费领取 30
+书豆。不过以前每天只能领几次，今年国庆时开始每天可以领很多次，每天大约能领
+3000 个书豆（相当于 30 块），不过这样领下来要花很久。所以我就利用&lt;a
+href=&#34;https://github.com/hyb1996/Auto.js&#34;&gt;Auto.js&lt;/a&gt;写了一个自动体验
+APP 领取书豆的脚本，昨天写完，今天试了一下感觉不错。&lt;/p&gt;
+&lt;p&gt;好久没写博客了，先水一篇，同时记录一下学习过程。最近打算再认真学一下
+js，把小爱课程表的自动导入写出来。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;第一次接触到&lt;a
+href=&#34;https://github.com/hyb1996/Auto.js&#34;&gt;Auto.js&lt;/a&gt;还是 18
+年双十一，当时在酷安看到有人用这个自动领喵币，后来每次这种活动我都会用。国庆的时候我就想找个脚本自动领书豆，但是可能多看用户不多吧，一直没找到，当时也想自己写一个，但是又感觉比较复杂，就没有管。最近想买书了，就想着自己试着写一下。&lt;/p&gt;
+&lt;p&gt;一开始我是直接写 js
+文件，然后传到手机上运行。后来觉得很麻烦，就看了看文档，找到了 VS Code
+插件，可以远程运行，方便了很多。&lt;/p&gt;
+&lt;p&gt;本来这些体验 APP 我都没有同意用户协议，不想给权限，但是这样导致打开
+APP 时会弹出用户协议，不能直接返回退出，甚至有些 APP
+不能点击退出。所以我就想把这些应用分下类，不同类 APP 进行不同操作。但是
+APP 非常多，而且退出操作五花八门。索性我就同意了用户协议，不再给 APP
+分类，都可以通过返回退出。&lt;/p&gt;
+&lt;p&gt;另外一个问题是多看的任务页面有很多任务，都有领取按钮，我用&lt;code&gt;findOne()&lt;/code&gt;或者&lt;code&gt;findOnce()&lt;/code&gt;会导致执行一次任务后找到的领取按钮是下一个任务。我就想找到所有任务，然后根据和任务名的相对位置找到按钮，可是执行一次后会找不到体验
+APP
+任务的按钮（我也不知道怎么回事）。最后只好通过模拟点击来实现，不过这样在其他设备上用时可能要改动点击坐标。&lt;/p&gt;
+</content>
+        <category term="杂" />
+        <category term="JavaScript" />
+        <category term="Node.js" />
+        <updated>2020-11-19T14:23:34.000Z</updated>
+    </entry>
+</feed>

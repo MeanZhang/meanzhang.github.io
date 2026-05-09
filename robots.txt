@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /2020/
+Allow: /2022/
+Allow: /about/
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Sitemap: https://blog.meancoder.xyz/sitemap.xml
+Sitemap: https://blog.meancoder.xyz/baidusitemap.xml

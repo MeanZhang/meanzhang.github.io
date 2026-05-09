@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Mean 个人博客 • Posts by &#34;java&#34; category</title>
+        <link>https://blog.meancoder.xyz</link>
+        <description>Mean 个人博客</description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 16 May 2020 21:36:22 +0800</pubDate>
+        <lastBuildDate>Sat, 16 May 2020 21:36:22 +0800</lastBuildDate>
+        <category>Java</category>
+        <category>密码学</category>
+        <category>RSA</category>
+        <category>Markdown</category>
+        <category>Python</category>
+        <category>Serverless</category>
+        <category>博客</category>
+        <category>抽象代数</category>
+        <category>中国剩余定理</category>
+        <category>服务器</category>
+        <category>杂</category>
+        <category>JavaScript</category>
+        <category>Node.js</category>
+        <item>
+            <guid isPermalink="true">https://blog.meancoder.xyz/2020/biginteger-usage/</guid>
+            <title>BigInteger 用法</title>
+            <link>https://blog.meancoder.xyz/2020/biginteger-usage/</link>
+            <category>Java</category>
+            <category>密码学</category>
+            <category>RSA</category>
+            <pubDate>Sat, 16 May 2020 21:36:22 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;今天在写 RSA，又用到了&lt;code&gt;java.math.BigInteger&lt;/code&gt;类&lt;a
+href=&#34;#fn1&#34; class=&#34;footnote-ref&#34; id=&#34;fnref1&#34;
+role=&#34;doc-noteref&#34;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/a&gt;，总结一下常用的用法。（写完才发现
+gcd 和求逆方法都有了）&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;h2 id=&#34;biginteger-介绍&#34;&gt;BigInteger 介绍&lt;/h2&gt;
+&lt;p&gt;继承自&lt;code&gt;Number&lt;/code&gt;类，可表示任意长度的整数。&lt;code&gt;BigInteger&lt;/code&gt;用等号可以直接进行复制，而不是引用地址。&lt;/p&gt;
+&lt;h2 id=&#34;构造方法&#34;&gt;构造方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(int numBits, Random rnd)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;构造一个随机生成的&lt;code&gt;numBits&lt;/code&gt;位的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(String val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将十进制字符串表示的&lt;code&gt;val&lt;/code&gt;转为&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger(String val, int radix)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;code&gt;radix&lt;/code&gt;进制字符串表示的&lt;code&gt;val&lt;/code&gt;转为&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;常用方法&#34;&gt;常用方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger add(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;加法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger subtract(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;减法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger multiply(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;乘法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger divide(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;除法。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger[] divideAndRemainder(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;带余除法，返回商和余数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger remainder(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求余数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger mod(BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取模，注意和取余的区别。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger pow(int exponent)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;幂运算。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger gcd(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求最大公因子。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger abs()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取绝对值。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger negate()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;取相反数。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger modPow(BigInteger exponent, BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;模幂。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger modInverse(BigInteger m)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;求逆元。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger shiftLeft(int n)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;左移&lt;code&gt;n&lt;/code&gt;位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public BigInteger shiftRight(int n)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;右移&lt;code&gt;n&lt;/code&gt;位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int bitLength()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回二进制位数，不包括符号位。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public static BigInteger valueOf(long val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回一个值为&lt;code&gt;val&lt;/code&gt;的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public static BigInteger probablePrime(int bitLength, Random rnd)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回一个&lt;code&gt;bitLength&lt;/code&gt;位的可能是素数的&lt;code&gt;BigInteger&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public boolean isProbablePrime(int certainty)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;判断是否可能为素数，素数准确率为&lt;span
+class=&#34;math inline&#34;&gt;1 − 1/2&lt;sup&gt;&lt;em&gt;c&lt;/em&gt;&lt;em&gt;e&lt;/em&gt;&lt;em&gt;r&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;&lt;em&gt;a&lt;/em&gt;&lt;em&gt;i&lt;/em&gt;&lt;em&gt;n&lt;/em&gt;&lt;em&gt;t&lt;/em&gt;&lt;em&gt;y&lt;/em&gt;&lt;/sup&gt;&lt;/span&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int compareTo(BigInteger val)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;比较大小。小于返回&lt;code&gt;-1&lt;/code&gt;，相等返回&lt;code&gt;0&lt;/code&gt;，大于返回&lt;code&gt;1&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public boolean equals(Object x)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;判断是否相等。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public String toString(int radix)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;返回以&lt;code&gt;radix&lt;/code&gt;进制表示的字符串。若不传入参数，默认为十进制。&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;public int intValue()&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;code&gt;BigInteger&lt;/code&gt;转为&lt;code&gt;int&lt;/code&gt;。&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;参考资料&lt;/h2&gt;
+&lt;aside id=&#34;footnotes&#34; class=&#34;footnotes footnotes-end-of-document&#34;
+role=&#34;doc-endnotes&#34;&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn1&#34;&gt;&lt;p&gt;&lt;a
+href=&#34;https://docs.oracle.com/en/java/javase/14/docs/api/java.base/java/math/BigInteger.html&#34;&gt;BigInteger
+(Java SE 14 &amp;amp; JDK 14)&lt;/a&gt;&lt;a href=&#34;#fnref1&#34; class=&#34;footnote-back&#34;
+role=&#34;doc-backlink&#34;&gt;↩︎&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/aside&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

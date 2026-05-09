@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.meancoder.xyz</id>
+    <title>Mean 个人博客 • Posts by &#34;杂&#34; tag</title>
+    <link href="https://blog.meancoder.xyz" />
+    <updated>2022-08-23T04:25:06.000Z</updated>
+    <category term="Java" />
+    <category term="密码学" />
+    <category term="RSA" />
+    <category term="Markdown" />
+    <category term="Python" />
+    <category term="Serverless" />
+    <category term="博客" />
+    <category term="抽象代数" />
+    <category term="中国剩余定理" />
+    <category term="服务器" />
+    <category term="杂" />
+    <category term="JavaScript" />
+    <category term="Node.js" />
+    <entry>
+        <id>https://blog.meancoder.xyz/2022/WoA-experience/</id>
+        <title>Windows on Arm 初体验</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2022/WoA-experience/"/>
+        <content type="html">&lt;p&gt;之前报名了荣耀神机营的 PC
+项目，本来是想着如果申请到了，旧笔记本就放在实验室，宿舍用新品。但是没想到新品是个二合一，还是
+Windows on Arm (WoA)的，这篇文章就是在这台机器上写的。&lt;/p&gt;
+&lt;figure&gt;
+&lt;img data-src=&#34;https://img1.meancoder.xyz/notes/others/matebook-e-go.jpg&#34;
+alt=&#34;MateBook E Go&#34; /&gt;
+&lt;figcaption aria-hidden=&#34;true&#34;&gt;MateBook E Go&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;首先介绍一下，这块平板就是之前有人爆料的 MateBook E Go
+了，听名字就让人想到 Surface Go
+了。和我以前参加神机营的经历一样，这台机器也不是高端产品。之前爆料说这台机器搭载骁龙
+8cx Gen3，但是拿到手的是 Gen2，内存 16G，屏幕是 2K
+的，看着还不错。有两个 Type-C 接口，一个 3.5mm
+耳机口，双扬声器，指纹识别集成在电源键上。相机感觉和普通笔记本一个水平。配了一个
+65W 的充电器。&lt;/p&gt;
+&lt;p&gt;体验几天下来，说一说感受吧。&lt;/p&gt;
+&lt;p&gt;首先性能不太行，骁龙和 M1 相比差了一大截，不插电看 B
+站都卡，系统操作也不流畅。这个表现当日常主力使用肯定是不够的。但是 ARM
+续航不错，外出携带很方便，临时码个字，简单写个代码也还是可以的。&lt;/p&gt;
+&lt;p&gt;外设方面，这次给配了一个皮套键盘和支架，可以通过触点连接，拿掉后也可以通过蓝牙连接，这个倒是挺方便的。但是这个键盘的
+Fn
+键有点问题，热键模式下热键没法用，组合键和响应的还是单键的功能，不知道是设计如此还是
+bug。这一点对于经常使用功能键的我还是有很大影响的。支架的调节范围也挺大的，目测最大可以到
+140 度左右，挺不错的。&lt;/p&gt;
+&lt;p&gt;生态方面，ARM 真的差太多了，甚至预装的华为电脑管家都还是 x64
+的。虽然现在可以转译 x86 和 x64
+应用，但是原生的还是会好一些，转译的多多少少会有一些问题。比如迅雷经常会闪退，Traffic
+Monitor 不会开机自启，微信今天也遇到了在窗口内鼠标消失的问题。&lt;/p&gt;
+&lt;p&gt;作为半个程序员，常用的 IDE 和 SDK
+肯定是要装一下的。机器到手就马上装了 WSL、WSA、VS
+Code，单独开都还挺好，但是同时开就会很卡。JDK 装了微软的 ARM 版，Python
+3.10 的 RC 版也支持了 ARM，NodeJS 官方还没有 ARM
+版，第三方的又太旧了。IDEA 和 Android 都是 x64 的，比较卡。git 也是 x64
+的，在 VS Code 里用起来非常卡。最近 VS 预览版也支持 ARM
+了，装了一个，启动有点慢，用起来还行，顺手就编译了一个 ARM 版的 Traffic
+Monitor，但是任务栏窗口无法交互，还是等作者更新吧。&lt;/p&gt;
+&lt;p&gt;最近 Fleet 也公测了，可惜也是没有 ARM
+版，而且基本上没啥用，还是等更新吧。&lt;/p&gt;
+&lt;hr /&gt;
+&lt;p&gt;最后附上目前装的 ARM 版软件：&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;软件&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Bandizip&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Bitwarden&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Clash for Windows&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Everything&lt;/td&gt;
+&lt;td&gt;便携版&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Edge&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Firefox&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;PowerToys&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;Typora&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;Traffic Monitor&lt;/td&gt;
+&lt;td&gt;自己编译&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;VS Code&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;WSL&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+</content>
+        <category term="杂" />
+        <updated>2022-08-23T04:25:06.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://blog.meancoder.xyz/2020/auto-duokan/</id>
+        <title>多看阅读自动体验 APP 领书币</title>
+        <link rel="alternate" href="https://blog.meancoder.xyz/2020/auto-duokan/"/>
+        <content type="html">&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;本文仅用于记录自己的学习过程，严禁转载。&lt;/strong&gt;&lt;br /&gt;
+&lt;strong&gt;为了避免不必要的纠纷，脚本代码已去除。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;多看阅读一直都有体验 APP 领取书豆的活动，体验 30 秒 APP
+就可以免费领取 30
+书豆。不过以前每天只能领几次，今年国庆时开始每天可以领很多次，每天大约能领
+3000 个书豆（相当于 30 块），不过这样领下来要花很久。所以我就利用&lt;a
+href=&#34;https://github.com/hyb1996/Auto.js&#34;&gt;Auto.js&lt;/a&gt;写了一个自动体验
+APP 领取书豆的脚本，昨天写完，今天试了一下感觉不错。&lt;/p&gt;
+&lt;p&gt;好久没写博客了，先水一篇，同时记录一下学习过程。最近打算再认真学一下
+js，把小爱课程表的自动导入写出来。&lt;/p&gt;
+&lt;span id=&#34;more&#34;&gt;&lt;/span&gt;
+&lt;p&gt;第一次接触到&lt;a
+href=&#34;https://github.com/hyb1996/Auto.js&#34;&gt;Auto.js&lt;/a&gt;还是 18
+年双十一，当时在酷安看到有人用这个自动领喵币，后来每次这种活动我都会用。国庆的时候我就想找个脚本自动领书豆，但是可能多看用户不多吧，一直没找到，当时也想自己写一个，但是又感觉比较复杂，就没有管。最近想买书了，就想着自己试着写一下。&lt;/p&gt;
+&lt;p&gt;一开始我是直接写 js
+文件，然后传到手机上运行。后来觉得很麻烦，就看了看文档，找到了 VS Code
+插件，可以远程运行，方便了很多。&lt;/p&gt;
+&lt;p&gt;本来这些体验 APP 我都没有同意用户协议，不想给权限，但是这样导致打开
+APP 时会弹出用户协议，不能直接返回退出，甚至有些 APP
+不能点击退出。所以我就想把这些应用分下类，不同类 APP 进行不同操作。但是
+APP 非常多，而且退出操作五花八门。索性我就同意了用户协议，不再给 APP
+分类，都可以通过返回退出。&lt;/p&gt;
+&lt;p&gt;另外一个问题是多看的任务页面有很多任务，都有领取按钮，我用&lt;code&gt;findOne()&lt;/code&gt;或者&lt;code&gt;findOnce()&lt;/code&gt;会导致执行一次任务后找到的领取按钮是下一个任务。我就想找到所有任务，然后根据和任务名的相对位置找到按钮，可是执行一次后会找不到体验
+APP
+任务的按钮（我也不知道怎么回事）。最后只好通过模拟点击来实现，不过这样在其他设备上用时可能要改动点击坐标。&lt;/p&gt;
+</content>
+        <category term="杂" />
+        <category term="JavaScript" />
+        <category term="Node.js" />
+        <updated>2020-11-19T14:23:34.000Z</updated>
+    </entry>
+</feed>
