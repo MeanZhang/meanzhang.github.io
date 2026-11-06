@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Mean 个人博客 • Posts by &#34;markdown&#34; tag</title>
+        <link>https://blog.meancoder.xyz</link>
+        <description>Mean 个人博客</description>
+        <language>zh-CN</language>
+        <pubDate>Wed, 03 Jun 2020 22:12:31 +0800</pubDate>
+        <lastBuildDate>Wed, 03 Jun 2020 22:12:31 +0800</lastBuildDate>
+        <category>Java</category>
+        <category>密码学</category>
+        <category>RSA</category>
+        <category>Markdown</category>
+        <category>Python</category>
+        <category>Serverless</category>
+        <category>博客</category>
+        <category>抽象代数</category>
+        <category>中国剩余定理</category>
+        <category>服务器</category>
+        <category>杂</category>
+        <category>JavaScript</category>
+        <category>Node.js</category>
+        <item>
+            <guid isPermalink="true">https://blog.meancoder.xyz/2020/markdown-formula-symbol/</guid>
+            <title>Markdown 公式符号</title>
+            <link>https://blog.meancoder.xyz/2020/markdown-formula-symbol/</link>
+            <category>Markdown</category>
+            <pubDate>Wed, 03 Jun 2020 22:12:31 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;记录一下部分 Markdown 公式中符号的代码。（本文将持续更新）&lt;/p&gt;
+&lt;!---more---&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th&gt;符号名称&lt;/th&gt;
+&lt;th&gt;显示效果&lt;/th&gt;
+&lt;th&gt;代码&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;小于等于号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;≤&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\leqslant&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;大于等于号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;≥&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\geqslant&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td&gt;根号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;$\sqrt{2}$&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\sqrt&amp;#123;2&amp;#125;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td&gt;根号&lt;/td&gt;
+&lt;td&gt;&lt;span class=&#34;math inline&#34;&gt;$\sqrt[n]{2}$&lt;/span&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;\sqrt[n]&amp;#123;2&amp;#125;&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>
